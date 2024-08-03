@@ -1,47 +1,77 @@
 <?php
 
-use app\models\Students;
-use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\grid\ActionColumn;
 use yii\grid\GridView;
+use yii\helpers\Html;
 
 /** @var yii\web\View $this */
 /** @var app\models\StudentsSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Students';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Danh sách Học sinh';
+$dataProvider->setSort(false);
 ?>
 <div class="students-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Students', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <div class="row align-items-center">
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="col-2">
+        <?= Html::a('Thêm', ['create'], ['class' => 'btn btn-success']) ?>
+    </div>
 
+    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+</div>
     <?= GridView::widget([
+        'pager' => [
+            'firstPageLabel' => 'Đầu',
+            'lastPageLabel' => 'Cuối'
+        ],
+        'layout' => "{pager}\n{summary}\n{items}\n{pager}",
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        'formatter' => ['class' => 'yii\i18n\Formatter', 'nullDisplay' => ''],
+        'summary' => "Đang hiện từ {begin} - {end} trong {totalCount} " . $this->title,
+        'emptyText' => "Không tìm thấy kết quả",
+        'tableOptions' => ['class' => 'table table-bordered table-hover table table-striped'],
+        'rowOptions' => function ($model, $key, $index, $grid) {
+            return [
+                'style' => "cursor: pointer",
+                'onclick' => 'location.href="' . Yii::$app->urlManager->createUrl([ 'students/update', 'id' => $model->id]) . '"'
+            ];
+        },
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
+            [
+                'class' => 'yii\grid\SerialColumn',
+                'header' => 'STT',
+                'headerOptions' => [
+                    'class' => 'text-center'
+                ],
+                'contentOptions' => [
+                    'class' => 'text-center'
+                ]
+            ],
             'first_name',
             'last_name',
             'date_of_birth',
             'gender',
-            //'grade_level',
-            //'email:email',
+            'grade_level',
+            'email:email',
             [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Students $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
-            ],
+                'header' => 'locked',
+                'headerOptions' => [
+                    'class' => 'text-center'
+                ],
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return Html::checkbox('Khoá',$model->locked, [
+                        'disabled' => true
+                    ]);
+                },
+                'contentOptions' => [
+                    'class' => 'text-center'
+                ]
+            ]
+
         ],
     ]); ?>
 

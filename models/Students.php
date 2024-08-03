@@ -14,6 +14,7 @@ use Yii;
  * @property string|null $gender
  * @property int|null $grade_level
  * @property string|null $email
+ * @property int $locked
  */
 class Students extends \yii\db\ActiveRecord
 {
@@ -34,7 +35,7 @@ class Students extends \yii\db\ActiveRecord
             [['first_name', 'last_name'], 'required'],
             [['date_of_birth'], 'safe'],
             [['gender'], 'string'],
-            [['grade_level'], 'integer'],
+            [['grade_level', 'locked'], 'integer'],
             [['first_name', 'last_name'], 'string', 'max' => 50],
             [['email'], 'string', 'max' => 100],
         ];
@@ -47,12 +48,13 @@ class Students extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'first_name' => 'First Name',
-            'last_name' => 'Last Name',
-            'date_of_birth' => 'Date Of Birth',
+            'first_name' => 'Tên',
+            'last_name' => 'Họ',
+            'date_of_birth' => 'Ngày sinh',
             'gender' => 'Gender',
             'grade_level' => 'Grade Level',
             'email' => 'Email',
+            'locked' => 'Khóa',
         ];
     }
 }
