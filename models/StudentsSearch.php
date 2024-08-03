@@ -17,7 +17,7 @@ class StudentsSearch extends Students
     public function rules()
     {
         return [
-            [['id', 'grade_level'], 'integer'],
+            [['id', 'grade_level', 'locked'], 'integer'],
             [['first_name', 'last_name', 'date_of_birth', 'gender', 'email'], 'safe'],
         ];
     }
@@ -61,6 +61,7 @@ class StudentsSearch extends Students
             'id' => $this->id,
             'date_of_birth' => $this->date_of_birth,
             'grade_level' => $this->grade_level,
+            'locked' => $this->locked,
         ]);
 
         $query->andFilterWhere(['like', 'first_name', $this->first_name])

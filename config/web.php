@@ -48,7 +48,21 @@ $config = [
             'showScriptName' => false,
             'rules' => [
             ],
+        ], 
+        'formatter' => [
+            'defaultTimeZone' => 'Asia/Ho_Chi_Minh',
+            'dateFormat' => 'dd/MM/yyyy',
+            'timeFormat' => 'HH:mm',
+            'datetimeFormat' => 'dd/MM/yyyy HH:mm',
+            // 'decimalSeparator' => ',',
+            // 'thousandSeparator' => ' ',
+            'currencyCode' => 'VND',
+            'nullDisplay' => ''
         ],
+        'assetManager' => [
+            'appendTimestamp' => true,
+            'forceCopy' => true
+        ]
         
     ],
     'params' => $params,
