@@ -9,19 +9,20 @@ use yii\helpers\Html;
 
 $this->title = 'Danh sách Học sinh';
 $dataProvider->setSort(false);
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="students-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
     <div class="row align-items-center">
 
-    <div class="col-2">
-        <?= Html::a('Thêm', ['create'], ['class' => 'btn btn-success']) ?>
+        <div class="col-2 mt-2">
+            <?= Html::a('Thêm', ['create'], ['class' => 'btn btn-success']) ?>
+        </div>
+
+        <?php echo $this->render('_search', ['model' => $searchModel]); ?>
     </div>
 
-    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
-</div>
     <?= GridView::widget([
         'pager' => [
             'firstPageLabel' => 'Đầu',
@@ -36,7 +37,7 @@ $dataProvider->setSort(false);
         'rowOptions' => function ($model, $key, $index, $grid) {
             return [
                 'style' => "cursor: pointer",
-                'onclick' => 'location.href="' . Yii::$app->urlManager->createUrl([ 'students/update', 'id' => $model->id]) . '"'
+                'onclick' => 'location.href="' . Yii::$app->urlManager->createUrl(['students/update', 'id' => $model->id]) . '"'
             ];
         },
         'columns' => [
@@ -57,13 +58,13 @@ $dataProvider->setSort(false);
             'grade_level',
             'email:email',
             [
-                'header' => 'locked',
+                'header' => 'Khóa',
                 'headerOptions' => [
                     'class' => 'text-center'
                 ],
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return Html::checkbox('Khoá',$model->locked, [
+                    return Html::checkbox('Khoá', $model->locked, [
                         'disabled' => true
                     ]);
                 },
@@ -71,9 +72,6 @@ $dataProvider->setSort(false);
                     'class' => 'text-center'
                 ]
             ]
-
         ],
     ]); ?>
-
-
 </div>

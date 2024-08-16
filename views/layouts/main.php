@@ -72,7 +72,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
     <div class="container">
         <div class="row text-muted">
             <div class="col-md-6 text-center text-md-start">&copy; Ứng dụng phân tán <?= date('Y') ?></div>
-            <div class="col-md-6 text-center text-md-end">Bản quyền:<a href="https://www.facebook.com/">Huỳnh Minh Thành</a></div>
+            <div class="col-md-6 text-center text-md-end">Thực hiện bởi :<a href="https://www.facebook.com/">Thành</a></div>
         </div>
     </div>
 </footer>

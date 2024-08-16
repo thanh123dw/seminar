@@ -17,8 +17,7 @@ class StudentsSearch extends Students
     public function rules()
     {
         return [
-            [['id', 'grade_level', 'locked'], 'integer'],
-            [['first_name', 'last_name', 'date_of_birth', 'gender', 'email'], 'safe'],
+            [['first_name', 'last_name'], 'safe'],
         ];
     }
 
@@ -56,18 +55,8 @@ class StudentsSearch extends Students
             return $dataProvider;
         }
 
-        // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'date_of_birth' => $this->date_of_birth,
-            'grade_level' => $this->grade_level,
-            'locked' => $this->locked,
-        ]);
-
         $query->andFilterWhere(['like', 'first_name', $this->first_name])
-            ->andFilterWhere(['like', 'last_name', $this->last_name])
-            ->andFilterWhere(['like', 'gender', $this->gender])
-            ->andFilterWhere(['like', 'email', $this->email]);
+            ->andFilterWhere(['like', 'last_name', $this->last_name]);
 
         return $dataProvider;
     }

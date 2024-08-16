@@ -8,22 +8,19 @@ use yii\widgets\ActiveForm;
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class=" col students-search container">
+<div class="col students-search container">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
 
-    <div class="row align-items-end">
+    <div class="row align-items-end ">
         <div class="col">
             <?= $form->field($model, 'first_name') ?>
         </div>
         <div class="col">
             <?= $form->field($model, 'last_name') ?>
-        </div>
-        <div class="col">
-            <?= $form->field($model, 'date_of_birth') ?>
         </div>
         <div class="col">
              <div class="form-group">

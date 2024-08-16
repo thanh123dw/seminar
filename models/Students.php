@@ -37,7 +37,7 @@ class Students extends \yii\db\ActiveRecord
             [['gender'], 'string'],
             [['grade_level', 'locked'], 'integer'],
             [['first_name', 'last_name'], 'string', 'max' => 50],
-            [['email'], 'string', 'max' => 100],
+            [['email'], 'email'],
         ];
     }
 
