@@ -12,7 +12,6 @@ use yii\web\NotFoundHttpException;
  */
 class StudentsController extends Controller
 {
-
     public function actionIndex()
     {
         $searchModel = new StudentsSearch();
@@ -26,7 +25,7 @@ class StudentsController extends Controller
 
     public function actionCreate()
     {
-        return $this->editAdmission();
+        return $this->editStudents();
     }
 
     public function actionUpdate($id)
